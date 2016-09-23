@@ -60,9 +60,9 @@ public class StylistTest{
   public void getClients_returnsClients_List(){
     Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
     newStylist1.save();
-    Client newClient1 = new Client("Jean Valjean", "l'hero avec beaucoup de braverie" newStylist1.getId());
+    Client newClient1 = new Client("Jean Valjean", "l'hero avec beaucoup de braverie", newStylist1.getId());
     newClient1.save();
-    Client newClient2 = new Client("Javert", "l'anti-hero avec beaucoup des ambitions graves" newStylist1.getId());
+    Client newClient2 = new Client("Javert", "l'anti-hero avec beaucoup des ambitions graves", newStylist1.getId());
     newClient2.save();
     assertEquals(newStylist1.getClients().get(0), newClient1);
   }
@@ -79,17 +79,13 @@ public class StylistTest{
   @Test
   public void deleteClients_removesClientsFromStylist_true(){
     Stylist testStylist = new Stylist("Jerome","un homme gentrifique et plome");
+    testStylist.save();
     Client testClient = new Client("Jean Valjean", "l'hero avec beaucoup de braverie", testStylist.getId());
     testClient.save();
     int testClientId = testClient.getId();
-    testStylist.save();
+    testStylist.deleteClients();
     testStylist.delete();
     assertEquals(null, Client.find(testClientId));
   }
-
-
-  }
-
-
 
 }

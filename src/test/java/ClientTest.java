@@ -26,6 +26,7 @@ public class ClientTest{
     Client newClient1 = new Client("Javert", "l'anti-hero avec beaucoup des ambitions graves", 3);
     newClient1.save();
     Client newClient2 = new Client("Jean Valjean", "l'hero avec beaucoup de braverie", 3);
+    newClient2.save();
     assertEquals(true, Client.all().get(0).equals(newClient1));
     assertEquals(true, Client.all().get(1).equals(newClient2));
   }

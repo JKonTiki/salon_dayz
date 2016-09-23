@@ -1,9 +1,10 @@
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
 import static spark.Spark.*;
-import org.sql2o.*;
 
 public class App {
   public static void main(String[] args) {
@@ -19,8 +20,8 @@ public class App {
 
     post("/stylist/new", (request, response) -> {
       Map<String, Object> model = new HashMap<String, Object>();
-      String name = request.queryParams("name");
-      String info = request.queryParams("info");
+      String name = request.queryParams("stylist-name");
+      String info = request.queryParams("stylist-info");
       Stylist stylist = new Stylist(name, info);
       stylist.save();
       model.put("stylist", stylist);

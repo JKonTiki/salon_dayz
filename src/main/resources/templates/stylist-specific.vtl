@@ -1,6 +1,6 @@
-<h1>voila, bienvenue a la page internetment de <strong>$stylist.getName()</strong>, le mieux vixen des la ridicule sur tout le monde</h1>
+<h1>voila, bienvenue a la page internetment de<strong> $stylist.getName() </strong>,le mieux vixen des la ridicule sur tout le monde</h1>
 
-<h2>$stylist.getInfo()</h2>
+<h2 id="stylist-info">$stylist.getInfo()</h2>
 
 <a href="/stylist/$stylist.getId()/edit-info">
   <div class="btn btn-primary">
@@ -10,7 +10,7 @@
 
 <br><br>
 
-#if($stylist.getClients().all().size()<1)
+#if($stylist.getClients().size()<1)
 
   <h3>il n'y a pas des clients, votre grace</h3>
 
@@ -32,12 +32,15 @@
 
 <h3>voulez vous ajoutez d'autre servant?</h3>
 
+<br>
+
 <form action="stylist/$stylist.getId()/client/new" method="post">
-    <label for="client-name">et comment s'appelle cette cochon pauvre?<label>
+    <label for="client-name">et comment s'appelle cette cochon pauvre?</label>
     <input id="client-name" name="client-name" class="form-control" type="text" placeholder="le nom" required>
     <label for="client-info">et que'est qu c'est trop faux sur cette tomate?</label>
-    <textarea rows="10" cols="50" id="client-info" name="client-info" class="form-control" type="text" placeholder="l'information" required>
+    <textarea rows="10" cols="50" id="client-info" name="client-info" class="form-control" type="text" placeholder="l'information" required></textarea>
+    <br>
     <button type="submit" class="btn btn-primary">cliquez-vous ici, s'il vouz plait</button>
   </form>
-
+<br><br><br>
   <a href="/">a la salon</a>

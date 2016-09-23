@@ -36,8 +36,9 @@ public class Stylist {
 
   public List<Client> getClients(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM CLIENTS WHERE id=:id";
+      String sql = "SELECT * FROM CLIENTS WHERE stylistid=:id";
       return con.createQuery(sql)
+        .addParameter("id",this.getId())
         .executeAndFetch(Client.class);
     }
   }
@@ -65,7 +66,6 @@ public class Stylist {
 
 
   public void delete(){
-    this.deleteClients();
     try(Connection con = DB.sql2o.open()) {
       String sql = "DELETE FROM stylists WHERE id = :id";
       con.createQuery(sql)

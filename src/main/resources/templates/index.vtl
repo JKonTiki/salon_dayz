@@ -1,6 +1,6 @@
 <h1>Bienvenue a <em>la salon de Paris</em>, la plus elite communite d'artistes, les philosophes, et les grands penseurs de notre age.</h1>
 
-#if ($stylists.size()>0)
+#if (!$stylists.get(0))
 
 Il n'y a pas des stylists dans notre court ici.
 
@@ -12,6 +12,8 @@ Il n'y a pas des stylists dans notre court ici.
     <li><a href="/stylist/$stylist.getID()">$stylist.getName()</a></li>
     <button type="submit" class="btn btn-danger">EFFACER</button>
   </form>
+
+  <br><br>
 
   #end
 
