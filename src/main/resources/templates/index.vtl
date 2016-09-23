@@ -1,0 +1,28 @@
+<h1>Bienvenue a <em>la salon de Paris</em>, la plus elite communite d'artistes, les philosophes, et les grands penseurs de notre age.</h1>
+
+#if ($stylists.all().size()>0)
+
+Il n'y a pas des stylists dans notre court ici.
+
+#else
+<h2>voila, les grands maitress de la stile:</h2>
+  #foreach($stylist in $stylists.all())
+
+  <form action="/stylist/$stylist.getId()/delete-stylist-success" method="post">
+    <li><a href="/stylist/$stylist.getID()">$stylist.getName()</a></li>
+    <button type="submit" class="btn btn-danger">EFFACER</button>
+  </form>
+
+  #end
+
+#end
+
+<h3>voulez vous ajoutez d'autre roi o reine?</h3>
+
+<form action="/stylist/new" method="post">
+    <label for="stylist-name">et comment s'appelle cette sage?</label>
+    <input id="stylist-name" name="stylist-name" class="form-control" type="text" placeholder="le nom" required>
+    <label for="stylist-info">et que'est qu c'est trop vrai sur cette figuer?</label>
+    <textarea rows="10" cols="50" id="stylist-info" name="stylist-info" class="form-control" type="text" placeholder="l'information" required>
+    <button type="submit" class="btn btn-primary">cliquez-vous ici, s'il vouz plait</button>
+  </form>
