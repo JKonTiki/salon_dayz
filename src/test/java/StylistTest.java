@@ -88,4 +88,13 @@ public class StylistTest{
     assertEquals(null, Client.find(testClientId));
   }
 
+  @Test
+    public void update_changesInfoToNewValue_true(){
+      Stylist testStylist = new Stylist("Jerome","un homme gentrifique et plome");
+      testStylist.save();
+      testStylist.setInfo("l'info nouvelle");
+      testStylist.updateInfo();
+      assertEquals("l'info nouvelle",testStylist.getInfo());
+    }
+
 }

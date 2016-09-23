@@ -25,6 +25,10 @@ public class Stylist {
     return info;
   }
 
+  public void setInfo(String _info){
+    info = _info;
+  }
+
 
   public static List<Stylist> all(){
     try(Connection con = DB.sql2o.open()){
@@ -61,6 +65,16 @@ public class Stylist {
         .addParameter("name", this.name)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  public void updateInfo() {
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE stylists SET info=:info WHERE id=:id";
+        con.createQuery(sql)
+          .addParameter("info", this.info)
+          .addParameter("id", this.id)
+          .executeUpdate();
     }
   }
 

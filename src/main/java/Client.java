@@ -31,6 +31,11 @@ public class Client {
     return stylistId;
   }
 
+
+  public void setInfo(String _info){
+    info = _info;
+  }
+
   public static List<Client> all() {
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT id, stylistId, info, name FROM clients";
@@ -57,6 +62,16 @@ public class Client {
         .addParameter("stylistId", this.stylistId)
         .executeUpdate()
         .getKey();
+    }
+  }
+
+  public void updateInfo() {
+    try(Connection con = DB.sql2o.open()){
+      String sql = "UPDATE clients SET info=:info WHERE id=:id";
+        con.createQuery(sql)
+          .addParameter("info", this.info)
+          .addParameter("id", this.id)
+          .executeUpdate();
     }
   }
 
