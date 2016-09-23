@@ -10,7 +10,7 @@
 
 <br><br>
 
-#if($stylist.getClients().size()<1)
+#if($stylist.getClients().size() < 1)
 
   <h3>il n'y a pas des clients, votre grace</h3>
 
@@ -20,7 +20,7 @@
   <ul>
     #foreach($client in $stylist.getClients())
     <form action="/stylist/$stylist.getId()/client/$client.getId()/delete-client-success" method="post">
-      <li><a href="/stylist/$stylist.getId()/client/$client.getId()">$stylist.getName()</a></li>
+      <li><a href="/stylist/$stylist.getId()/client/$client.getId()">$client.getName()</a></li>
       <button type="submit" class="btn btn-danger">EFFACER</button>
 
     </form>
@@ -34,7 +34,7 @@
 
 <br>
 
-<form action="stylist/$stylist.getId()/client/new" method="post">
+<form action="/stylist/$stylist.getId()" method="post">
     <label for="client-name">et comment s'appelle cette cochon pauvre?</label>
     <input id="client-name" name="client-name" class="form-control" type="text" placeholder="le nom" required>
     <label for="client-info">et que'est qu c'est trop faux sur cette tomate?</label>

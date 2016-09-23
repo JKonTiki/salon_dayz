@@ -9,7 +9,7 @@ Il n'y a pas des stylists dans notre court ici.
   #foreach($stylist in $stylists)
 
   <form action="/stylist/$stylist.getId()/delete-stylist-success" method="post">
-    <li><a href="/stylist/$stylist.getID()">$stylist.getName()</a></li>
+    <li><a href="/stylist/$stylist.getId()">$stylist.getName()</a></li>
     <button type="submit" class="btn btn-danger">EFFACER</button>
   </form>
 
