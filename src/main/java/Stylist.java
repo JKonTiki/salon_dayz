@@ -28,7 +28,7 @@ public class Stylist {
 
   public static List<Stylist> all(){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT * FROM hair_salon";
+      String sql = "SELECT * FROM stylists";
       return con.createQuery(sql)
         .executeAndFetch(Stylist.class);
     }
