@@ -1,85 +1,95 @@
-import org.sql2o.*;
 import org.junit.*;
 import static org.junit.Assert.*;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
+import org.sql2o.*;
 
-public class ArtistTest {
+public class StylistTest{
 
-  @Before
-  public void setUp() {
-    DB.sql2o = new Sql2o("jdbc:postgresql://localhost:5432/collection_test", null, null);
+  @Rule
+  public DatabaseRule database = new DatabaseRule();
+
+  @Test
+  public void equals_returnsTrueIfNamesAreTheSame(){
+    Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+    Stylist newStylist2 = new Stylist("Jerome","un homme gentrifique et plome");
+    assertTrue(newStylist1.equals(newStylist2));
   }
 
-  @After
-  public void tearDown() {
-    try(Connection con = DB.sql2o.open()) {
-      String deleteArtistsQuery = "DELETE FROM artists *;";
-      String deleteRecordsQuery = "DELETE FROM records *;";
-      con.createQuery(deleteRecordsQuery).executeUpdate();
-      con.createQuery(deleteArtistsQuery).executeUpdate();
+  @Test
+  public void save_returnsSavedStylist_true(){
+    Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+    newStylist1.save();
+    assertEquals(newStylist1, Stylist.all().get(0));
+  }
+
+  @Test
+  public void all_returnsAllInstancesOfStylist_true(){
+    Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+    newStylist1.save();
+    Stylist newStylist2 = new Stylist("Jerome","un homme gentrifique et plome");
+    newStylist2.save();
+    assertEquals(true, Stylist.all().get(0).equals(newStylist1));
+    assertEquals(true, Stylist.all().get(1).equals(newStylist2));
+  }
+
+  @Test
+  public void save_assignsIdToObject(){
+    Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+    newStylist1.save();
+    Stylist saveStylist = Stylist.all().get(0);
+    assertEquals(newStylist1.getId(), saveStylist.getId());
+  }
+
+  @Test
+  public void getId_StylistsInstantiateWithId(){
+    Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+    newStylist1.save();
+    assertTrue(newStylist1.getId()>0);
+  }
+
+  @Test
+  public void find_returnsStylistWithSameId_newStylist2(){
+  Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+  newStylist1.save();
+  Stylist newStylist2 = new Stylist("Maquis","Le long raconteur des couches magnifiques");
+  newStylist2.save();
+  assertEquals(true, Stylist.all().get(0).equals(newStylist1));
+  assertEquals(Stylist.find(newStylist2.getId()), newStylist2);
+  }
+
+  @Test
+  public void getClients_returnsClients_List(){
+    Stylist newStylist1 = new Stylist("Jerome","un homme gentrifique et plome");
+    newStylist1.save();
+    Client newClient1 = new Client("Jean Valjean", "l'hero avec beaucoup de braverie" newStylist1.getId());
+    newClient1.save();
+    Client newClient2 = new Client("Javert", "l'anti-hero avec beaucoup des ambitions graves" newStylist1.getId());
+    newClient2.save();
+    assertEquals(newStylist1.getClients().get(0), newClient1);
+  }
+
+  @Test
+    public void delete_removesStylistsFromDatabase_true() {
+      Stylist testStylist = new Stylist("Jerome","un homme gentrifique et plome");
+      testStylist.save();
+      int testStylistId = testStylist.getId();
+      testStylist.delete();
+      assertEquals(null, Stylist.find(testStylistId));
     }
-  }
 
   @Test
-  public void equals_returnsTrueIfNamesAreTheSame() {
-    Artist firstArtist = new Artist("Test");
-    Artist secondArtist = new Artist("Test");
-    assertTrue(firstArtist.equals(secondArtist));
+  public void deleteClients_removesClientsFromStylist_true(){
+    Stylist testStylist = new Stylist("Jerome","un homme gentrifique et plome");
+    Client testClient = new Client("Jean Valjean", "l'hero avec beaucoup de braverie", testStylist.getId());
+    testClient.save();
+    int testClientId = testClient.getId();
+    testStylist.save();
+    testStylist.delete();
+    assertEquals(null, Client.find(testClientId));
   }
 
-  @Test
-  public void save_savesIntoDatabase_true() {
-    Artist myArtist = new Artist("Test");
-    myArtist.save();
-    assertTrue(Artist.all().get(0).equals(myArtist));
+
   }
 
-  @Test
-  public void all_returnsAllInstancesOfArtist_true() {
-    Artist firstArtist = new Artist("Test");
-    firstArtist.save();
-    Artist secondArtist = new Artist("Wall");
-    secondArtist.save();
-    assertEquals(true, Artist.all().get(0).equals(firstArtist));
-    assertEquals(true, Artist.all().get(1).equals(secondArtist));
-  }
 
-  @Test
-  public void save_assignsIdtoObject() {
-    Artist myArtist = new Artist("new");
-    myArtist.save();
-    Artist savedArtist = Artist.all().get(0);
-    assertEquals(myArtist.getId(), savedArtist.getId());
-  }
-
-  @Test
-  public void getId_artistsInstantiateWithId_1() {
-    Artist testArtist = new Artist("test");
-    testArtist.save();
-    assertTrue(testArtist.getId(0));
-  }
-
-  @Test
-  public void find_returnsArtistWithSameId_secondArtist() {
-    Artist firstArtist = new Artist("RHCP");
-    firstArtist.save();
-    Artist secondArtist = new Artist("CCR");
-    secondArtist.save();
-    assertEquals(Artist.find(secondArtist.getId()), secondArtist)
-  }
-
-  @Test
-  public void getRecords_retrievesAllRecordsFromDatabase_recordsList() {
-    Artist myArtist = new Artist("Test");
-    myArtist.save();
-    Record firstRecord = new Record("Tank", myArtist.getId());
-    firstRecord.save();
-    Record secondRecord = new Record("Wall", myArtist.getId());
-    secondRecord.save();
-    Record[] records = new Record[] { firstRecord, secondRecord };
-    assertTrue(myArtist.getRecords().containsAll(Arrays.asList(records)));
-  }
 
 }

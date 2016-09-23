@@ -5,19 +5,26 @@ import java.util.ArrayList;
 public class Stylist {
 
   private int id;
+  private String name;
   private String info;
 
-  public Stylist(_info){
+  public Stylist(String _name, String _info){
     info = _info;
+    name = _name;
+  }
+
+  public int getId(){
+    return id;
+  }
+
+  public String getName(){
+    return name;
   }
 
   public String getInfo(){
     return info;
   }
 
-  public int getId(){
-    return id;
-  }
 
   public static List<Stylist> all(){
     try(Connection con = DB.sql2o.open()){
@@ -35,11 +42,11 @@ public class Stylist {
     }
   }
 
-  public static Stylist find(){
+  public static Stylist find(int _id){
     try(Connection con = DB.sql2o.open()){
-      String sql = "SELECT id, info FROM stylists WHERE id=:id";
+      String sql = "SELECT id, name, info FROM stylists WHERE id=:id";
       Stylist stylist = con.createQuery(sql)
-      .addParameter("id", this.id)
+      .addParameter("id", _id)
       .executeAndFetchFirst(Stylist.class);
       return stylist;
     }
@@ -47,9 +54,10 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()){
-      String sql = "INSERT INTO stylists(info) VALUES(:info)";
+      String sql = "INSERT INTO stylists(info, name) VALUES(:info, :name)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("info", this.info)
+        .addParameter("name", this.name)
         .executeUpdate()
         .getKey();
     }
