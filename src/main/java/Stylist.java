@@ -38,7 +38,7 @@ public class Stylist {
   public static Stylist find(){
     try(Connection con = DB.sql2o.open()){
       String sql = "SELECT id, info FROM stylists WHERE id=:id";
-      Person stylist = con.createQuery(sql)
+      Stylist stylist = con.createQuery(sql)
       .addParameter("id", this.id)
       .executeAndFetchFirst(Stylist.class);
       return stylist;
@@ -52,8 +52,8 @@ public class Stylist {
         .addParameter("info", this.info)
         .executeUpdate()
         .getKey();
+    }
   }
-}
 
 
   public void delete(){
@@ -82,4 +82,4 @@ public class Stylist {
           this.getId() == newStylist.getId();
       }
     }
-  }
+}
