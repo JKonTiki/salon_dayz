@@ -1,0 +1,43 @@
+<h1>voila, bienvenue a la page internetment de <strong>$stylist.getName()</strong>, le mieux vixen des la ridicule sur tout le monde</h1>
+
+<h2>$stylist.getInfo()</h2>
+
+<a href="/stylist/$stylist.getId()/edit-info">
+  <div class="btn btn-primary">
+    EDITER
+  </div>
+</a>
+
+<br><br>
+
+#if($stylist.getClients().all().size()<1)
+
+  <h3>il n'y a pas des clients, votre grace</h3>
+
+#else
+
+  <h3>ses clients:</h3>
+  <ul>
+    #foreach($client in $stylist.getClients())
+    <form action="/stylist/$stylist.getId()/client/$client.getId()/delete-client-success" method="post">
+      <li><a href="/stylist/$stylist.getId()/client/$client.getId()">$stylist.getName()</a></li>
+      <button type="submit" class="btn btn-danger">EFFACER</button>
+
+    </form>
+    #end
+  </ul>
+
+#end
+
+
+<h3>voulez vous ajoutez d'autre servant?</h3>
+
+<form action="stylist/$stylist.getId()/client/new" method="post">
+    <label for="client-name">et comment s'appelle cette cochon pauvre?<label>
+    <input id="client-name" name="client-name" class="form-control" type="text" placeholder="le nom" required>
+    <label for="client-info">et que'est qu c'est trop faux sur cette tomate?</label>
+    <textarea rows="10" cols="50" id="client-info" name="client-info" class="form-control" type="text" placeholder="l'information" required>
+    <button type="submit" class="btn btn-primary">cliquez-vous ici, s'il vouz plait</button>
+  </form>
+
+  <a href="/">a la salon</a>

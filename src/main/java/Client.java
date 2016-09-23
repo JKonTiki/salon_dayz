@@ -8,6 +8,11 @@ public class Client {
   private int stylistId;
   private String info;
 
+  public Client(String _info, int _stylistId int) {
+    info = _info;
+    stylistId = _stylistId;
+  }
 
+  
 
 }
