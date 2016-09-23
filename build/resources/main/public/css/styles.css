@@ -1,5 +1,5 @@
-#stylist-info{
-  border: 1px black solid;
+#stylist-info, textarea, input {
+  border: 4px purple solid;
   padding: 5px;
 }
 

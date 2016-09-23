@@ -1,4 +1,4 @@
-#stylist-info{
+#stylist-info, textarea, input {
   border: 4px purple solid;
   padding: 5px;
 }
