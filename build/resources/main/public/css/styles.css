@@ -1,0 +1,26 @@
+#stylist-info{
+  border: 1px black solid;
+  padding: 5px;
+}
+
+body{
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/cb/Salon_de_Madame_Geoffrin.jpg");
+  font-family: sans-serif;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+a{
+  color:white;
+  font-size: 20pt;
+}
+
+a:hover{
+  color:purple;
+  font-size: 50pt;
+}
+
+button{
+  padding: 5px;
+}
