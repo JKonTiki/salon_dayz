@@ -23,7 +23,7 @@ In PSQL:
 CREATE DATABASE hair_salon;
 
 In bash:
-$ psql media < media.sql
+$ psql hair_salon < media.sql
 
 ## Known Issues
 n/a
