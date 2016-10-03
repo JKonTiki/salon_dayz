@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ClientTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-09-23T21:53:42" hostname="epicodus-11.local" time="0.213">
+<testsuite name="ClientTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2016-10-03T17:25:52" hostname="epicodus-108.local" time="0.238">
   <properties/>
-  <testcase name="find_returnsClientWithSameId_newClient2" classname="ClientTest" time="0.123"/>
+  <testcase name="find_returnsClientWithSameId_newClient2" classname="ClientTest" time="0.154"/>
   <testcase name="equals_returnTrueIfClientsAreTheSame" classname="ClientTest" time="0.005"/>
   <testcase name="getId_ClientsInstantiateWithId" classname="ClientTest" time="0.011"/>
-  <testcase name="all_returnsAllInstancesOfClient_true" classname="ClientTest" time="0.026"/>
-  <testcase name="save_assignsIdToObject" classname="ClientTest" time="0.015"/>
-  <testcase name="delete_removesClientsFromDatabase_true" classname="ClientTest" time="0.019"/>
-  <testcase name="save_returnTrueIfClientsAreTheSame" classname="ClientTest" time="0.014"/>
+  <testcase name="all_returnsAllInstancesOfClient_true" classname="ClientTest" time="0.022"/>
+  <testcase name="save_assignsIdToObject" classname="ClientTest" time="0.014"/>
+  <testcase name="delete_removesClientsFromDatabase_true" classname="ClientTest" time="0.018"/>
+  <testcase name="save_returnTrueIfClientsAreTheSame" classname="ClientTest" time="0.013"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

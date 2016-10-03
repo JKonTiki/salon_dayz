@@ -21,9 +21,9 @@ a post-garage surf rock project
 
 In PSQL:
 CREATE DATABASE hair_salon;
-
-In bash:
-$ psql hair_salon < media.sql
+CREATE TABLE stylists (id serial PRIMARY KEY, info varchar, name varchar);
+CREATE TABLE clients (id serial PRIMARY KEY, info varchar, stylistId int, name varchar);
+CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
 
 ## Known Issues
 n/a
