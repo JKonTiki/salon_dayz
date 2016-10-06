@@ -20,9 +20,15 @@ a post-garage surf rock project
 ### Database Commands
 
 In PSQL:
+
 CREATE DATABASE hair_salon;
+
+\c hair_salon
+
 CREATE TABLE stylists (id serial PRIMARY KEY, info varchar, name varchar);
+
 CREATE TABLE clients (id serial PRIMARY KEY, info varchar, stylistId int, name varchar);
+
 CREATE DATABASE hair_salon_test WITH TEMPLATE hair_salon;
 
 ## Known Issues
